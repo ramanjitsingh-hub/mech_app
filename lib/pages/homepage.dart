@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mech_app/pages/pickup.dart';
+import 'package:mech_app/pages/report.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,55 +28,75 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  child: Container(
-                    height: 50,
-                    width: 250,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
-                        Text(
-                          "ADD NEW PICKUP",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Pickup()),
+                      );
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 250,
+                      decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            "   ADD NEW PICKUP",
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  child: Container(
-                    height: 50,
-                    width: 250,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
-                        Text(
-                          "REPORTS",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context, Report());
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 250,
+                      decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 50,
+                          ),
+                          Text(
+                            "REPORTS          ",
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -84,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     height: 50,
                     width: 250,
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Colors.redAccent,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -94,8 +116,11 @@ class _HomePageState extends State<HomePage> {
                           Icons.add,
                           color: Colors.white,
                         ),
+                        SizedBox(
+                          width: 50,
+                        ),
                         Text(
-                          "ADD NEW PICKUP",
+                          "ONGOING JOBS",
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:otp_text_field/otp_text_field.dart';
+import 'package:otp_text_field/style.dart';
 
 import '../homepage.dart';
 
@@ -32,6 +34,43 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(
             height: 40,
           ),
+          Container(
+            height: 50,
+            width: 250,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                style: TextStyle(
+                  decoration: TextDecoration.none,
+                  decorationThickness: 0,
+                ),
+                decoration: InputDecoration(
+                  hintText: "USER ID",
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            width: 250,
+            child: OTPTextField(
+              length: 5,
+              width: MediaQuery.of(context).size.width,
+              fieldWidth: 45,
+              style: TextStyle(fontSize: 15, color: Colors.white),
+              textFieldAlignment: MainAxisAlignment.spaceAround,
+              fieldStyle: FieldStyle.underline,
+            ),
+          ),
+          SizedBox(
+            height: 40,
+          ),
           GestureDetector(
             onTap: (() {
               Navigator.push(
@@ -46,19 +85,11 @@ class _LoginPageState extends State<LoginPage> {
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
               ),
-              child: Row(
-                children: [
-                  SizedBox(
-                    height: 50,
-                    width: 70,
-                    child: Image.network(
-                        "https://logos-world.net/wp-content/uploads/2020/09/Google-Symbol.png"),
-                  ),
-                  Text(
-                    "Continue",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ],
+              child: Center(
+                child: Text(
+                  "Continue",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),
