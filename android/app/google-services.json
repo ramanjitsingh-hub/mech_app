@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "698023764311",
+    "project_id": "mechanic-9eef3",
+    "storage_bucket": "mechanic-9eef3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698023764311:android:eefd7a55f20c34c3c85e12",
+        "android_client_info": {
+          "package_name": "com.example.mech_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698023764311-hp140aod7c629c2rifp3g9a9dn78s3h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKoQGXIZFcB1FjG2DMev2Z-ZL_SzKve9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698023764311-hp140aod7c629c2rifp3g9a9dn78s3h2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
