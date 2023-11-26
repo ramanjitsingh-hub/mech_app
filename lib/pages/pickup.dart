@@ -2,6 +2,10 @@ import 'package:action_slider/action_slider.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import 'package:mech_app/pages/homepage.dart';
+import 'package:provider/provider.dart';
+
+import '../firestore/storepickupdata.dart';
+import '../provider/userprovider.dart';
 
 class Pickup extends StatefulWidget {
   const Pickup({super.key});
@@ -12,6 +16,14 @@ class Pickup extends StatefulWidget {
 
 class _PickupState extends State<Pickup> {
   final _formKey = GlobalKey<FormState>();
+
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _vehicleNumberController = TextEditingController();
+  TextEditingController _phoneNumberController = TextEditingController();
+  TextEditingController _addressController = TextEditingController();
+  TextEditingController _stateController = TextEditingController();
+  TextEditingController _pincodeController = TextEditingController();
+
   String? _validateName(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter a name';
@@ -60,6 +72,8 @@ class _PickupState extends State<Pickup> {
 
   @override
   Widget build(BuildContext context) {
+    String userId = Provider.of<UserProvider>(context).userId;
+
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
@@ -101,6 +115,7 @@ class _PickupState extends State<Pickup> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 8.0),
                               child: TextFormField(
+                                controller: _nameController,
                                 validator: _validateName,
                                 style: TextStyle(
                                     decoration: TextDecoration.none,
@@ -139,6 +154,9 @@ class _PickupState extends State<Pickup> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: TextFormField(
+                                  textCapitalization:
+                                      TextCapitalization.characters,
+                                  controller: _vehicleNumberController,
                                   validator: _validateVehicleNumber,
                                   style: TextStyle(
                                       decoration: TextDecoration.none,
@@ -184,6 +202,7 @@ class _PickupState extends State<Pickup> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: TextFormField(
+                              controller: _phoneNumberController,
                               validator: _validatePhoneNumber,
                               keyboardType: TextInputType.phone,
                               inputFormatters: <TextInputFormatter>[
@@ -232,6 +251,7 @@ class _PickupState extends State<Pickup> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: TextFormField(
+                              controller: _addressController,
                               validator: _validateAddress,
                               minLines: 5,
                               maxLines: 10,
@@ -279,6 +299,7 @@ class _PickupState extends State<Pickup> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: TextFormField(
+                                  controller: _stateController,
                                   validator: _validateState,
                                   style: TextStyle(
                                       decoration: TextDecoration.none,
@@ -317,6 +338,7 @@ class _PickupState extends State<Pickup> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: TextFormField(
+                                    controller: _pincodeController,
                                     validator: _validatePincode,
                                     style: TextStyle(
                                         decoration: TextDecoration.none,
@@ -355,6 +377,15 @@ class _PickupState extends State<Pickup> {
                           // All validators pass
                           controller.loading();
                           await Future.delayed(const Duration(seconds: 3));
+                          await storePickupData(
+                            name: _nameController.text,
+                            vehicleNumber: _vehicleNumberController.text,
+                            phoneNumber: _phoneNumberController.text,
+                            address: _addressController.text,
+                            state: _stateController.text,
+                            pincode: _pincodeController.text,
+                            userid: userId,
+                          );
                           controller.success();
                           await Future.delayed(const Duration(seconds: 2));
                           controller.reset();
@@ -376,6 +407,17 @@ class _PickupState extends State<Pickup> {
               ),
             )),
       ),
+    );
+  }
+}
+
+class _UpperCaseTextInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(
+      text: newValue.text.toUpperCase(), // Auto capitalize all letters
+      selection: newValue.selection,
     );
   }
 }
