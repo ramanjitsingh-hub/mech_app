@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
+import '../../provider/userprovider.dart';
 import '../homepage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -149,7 +151,11 @@ class _LoginPageState extends State<LoginPage> {
                     bool isAuthenticated = await authenticateUser(
                         _userIdController.text, _pinController.text);
                     if (isAuthenticated) {
-                      // Navigate to the home page if authentication succeeds
+                      UserProvider userProvider =
+                          Provider.of<UserProvider>(context, listen: false);
+                          
+                      userProvider.setUserId(_userIdController.text);
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(

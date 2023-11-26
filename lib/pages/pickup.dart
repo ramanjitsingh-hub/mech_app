@@ -64,8 +64,8 @@ class _PickupState extends State<Pickup> {
       appBar: AppBar(
         leading: GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
             },
             child: Icon(Icons.arrow_back_ios_new)),
         centerTitle: true,
@@ -361,7 +361,7 @@ class _PickupState extends State<Pickup> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomePage(),
+                              builder: (context) => HomePage(),
                             ),
                           );
                         } else {

@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:mech_app/firebase_options.dart';
+import 'package:mech_app/provider/userprovider.dart';
+import 'package:provider/provider.dart';
 import 'pages/Auth/Login_Page.dart';
 
 void main() async {
@@ -10,7 +12,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(create:(context)=>UserProvider(),child:const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
