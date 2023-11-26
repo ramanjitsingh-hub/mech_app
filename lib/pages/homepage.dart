@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Report()));
+                                      builder: (context) => ReportsPage()));
                             },
                             child: Container(
                               height: 50,
