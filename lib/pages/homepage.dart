@@ -16,6 +16,7 @@ class HomePage extends StatelessWidget {
           .collection('users')
           .doc(Provider.of<UserProvider>(context).userId)
           .get(),
+          
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -38,7 +39,9 @@ class HomePage extends StatelessWidget {
             bodyWidget = Driver();
           } else if (userRole == 'dealer') {
             // User body widget
-            bodyWidget = dealer_interface(userName: userName,);
+            bodyWidget = dealer_interface(
+              userName: userName,
+            );
           } else {
             // Handle other roles or show an error message
             bodyWidget = Center(child: Text('Unknown user role'));
@@ -115,42 +118,42 @@ class dealer_interface extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ReportsPage()));
-                  },
-                  child: Container(
-                    height: 50,
-                    width: 250,
-                    decoration: BoxDecoration(
-                      color: Colors.redAccent,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 50,
-                        ),
-                        Text(
-                          "REPORTS          ",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 8.0),
+              //   child: GestureDetector(
+              //     onTap: () {
+              //       Navigator.push(context,
+              //           MaterialPageRoute(builder: (context) => ReportsPage()));
+              //     },
+              //     child: Container(
+              //       height: 50,
+              //       width: 250,
+              //       decoration: BoxDecoration(
+              //         color: Colors.redAccent,
+              //         borderRadius: BorderRadius.circular(20),
+              //       ),
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Icon(
+              //             Icons.add,
+              //             color: Colors.white,
+              //           ),
+              //           SizedBox(
+              //             width: 50,
+              //           ),
+              //           Text(
+              //             "REPORTS          ",
+              //             style: TextStyle(
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.white),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(

@@ -10,6 +10,22 @@ class Driver extends StatefulWidget {
 class _DriverState extends State<Driver> {
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return Scaffold(
+      body: SafeArea(
+          child: PageView(
+        children: [
+          Column(
+            children: [
+              Container(
+                  height: 250,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey,
+                  ))
+            ],
+          )
+        ],
+      )),
+    );
   }
 }

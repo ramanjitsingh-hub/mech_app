@@ -19,7 +19,8 @@ Future<void> storePickupData({
       'pincode': pincode,
       'status': "ongoing",
       'job_provider': userid,
-      'job_status': "fetching_driver",
+      'job_status': "fetch",
+      'driver': "fetch",
       // Add more fields if necessary
     });
     print('Pickup data added to Firestore');

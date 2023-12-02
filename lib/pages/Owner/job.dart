@@ -52,12 +52,15 @@ void _showDriverList(BuildContext context, String jobId) {
                             await FirebaseFirestore.instance
                                 .collection('pickups')
                                 .doc(jobId)
-                                .update({'driver': selectedDriverId});
+                                .update({
+                              'driver': selectedDriverId,
+                              'job_status': 'Waiting for driver'
+                            });
 
                             await FirebaseFirestore.instance
                                 .collection('users')
                                 .doc(selectedDriverId)
-                                .update({'status': "On Job"});
+                                .update({'status': "On Job", 'job': jobId});
                             print(
                                 'Assigned driver with ID $selectedDriverId to job $jobId');
                             Navigator.of(context).pop();
@@ -100,7 +103,7 @@ class _JobState extends State<Job> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ongoing Jobs'),
+        title: Text('Assign Drivers'),
         backgroundColor: Colors.redAccent,
         centerTitle: true,
         titleTextStyle: GoogleFonts.inter(

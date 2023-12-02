@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/userprovider.dart';
 
 class ReportsPage extends StatefulWidget {
   const ReportsPage({Key? key}) : super(key: key);
@@ -25,6 +28,7 @@ class _ReportsPageState extends State<ReportsPage> {
 
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('pickups')
+        .where('status', isEqualTo: 'completed')
         .where('timestamp', isGreaterThanOrEqualTo: startOfToday)
         .where('timestamp', isLessThanOrEqualTo: endOfToday)
         .get();
@@ -73,6 +77,7 @@ class _ReportsPageState extends State<ReportsPage> {
                 stream: FirebaseFirestore.instance
                     .collection('pickups')
                     .orderBy('timestamp', descending: true)
+                    .where('job_provider',isEqualTo: Provider.of<UserProvider>(context).userId)
                     .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {

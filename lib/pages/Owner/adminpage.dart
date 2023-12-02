@@ -21,6 +21,10 @@ class _AdminPageState extends State<AdminPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(
+                  height: 250,
+                  width: 250,
+                  child: Image.asset("assets/pndlogo.png")),
               Text(
                 "Welcome, Admin",
                 style: TextStyle(
@@ -64,19 +68,14 @@ class _AdminPageState extends State<AdminPage> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 30,
-                                  ),
-                                  Text(
-                                    "ASSIGN DRIVERS",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                  Center(
+                                    child: Text(
+                                      "ASSIGN DRIVERS",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -108,42 +107,42 @@ class _AdminPageState extends State<AdminPage> {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Analytics()));
-                  },
-                  child: Container(
-                    height: 50,
-                    width: 250,
-                    decoration: BoxDecoration(
-                      color: Colors.orangeAccent,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 50,
-                        ),
-                        Text(
-                          "REPORTS    ",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 8.0),
+              //   child: GestureDetector(
+              //     onTap: () {
+              //       Navigator.push(context,
+              //           MaterialPageRoute(builder: (context) => Analytics()));
+              //     },
+              //     child: Container(
+              //       height: 50,
+              //       width: 250,
+              //       decoration: BoxDecoration(
+              //         color: Colors.orangeAccent,
+              //         borderRadius: BorderRadius.circular(20),
+              //       ),
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Icon(
+              //             Icons.add,
+              //             color: Colors.white,
+              //           ),
+              //           SizedBox(
+              //             width: 50,
+              //           ),
+              //           Text(
+              //             "REPORTS    ",
+              //             style: TextStyle(
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.bold,
+              //                 color: Colors.white),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
@@ -164,16 +163,6 @@ class _AdminPageState extends State<AdminPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: 25,
-                        ),
-                        Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 50,
-                        ),
                         Text(
                           "ONGOING JOBS",
                           style: TextStyle(
