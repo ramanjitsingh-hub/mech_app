@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
             bodyWidget = Driver();
           } else if (userRole == 'dealer') {
             // User body widget
-            bodyWidget = HomePage();
+            bodyWidget = dealer_interface(userName: userName,);
           } else {
             // Handle other roles or show an error message
             bodyWidget = Center(child: Text('Unknown user role'));

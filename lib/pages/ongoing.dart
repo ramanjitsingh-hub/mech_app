@@ -24,7 +24,7 @@ class OngoingJobsPage extends StatelessWidget {
         stream: FirebaseFirestore.instance
             .collection('pickups')
             .where('job_provider', isEqualTo: userId)
-            .where('status', isEqualTo: 'ongoing')
+            .where('status', isEqualTo: 'fetch dr')
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

@@ -23,16 +23,14 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       // Access Firestore and check if the provided credentials match
-      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+      QuerySnapshot userSnapshot = await FirebaseFirestore.instance
           .collection('users')
-          .doc(userID)
+          .where('username', isEqualTo: userID)
           .get();
 
-      if (userSnapshot.exists) {
-        Map<String, dynamic> userData =
-            userSnapshot.data() as Map<String, dynamic>;
-        String storedPIN = userData[
-            'pin']; // Assuming 'pin' is the field for the PIN in Firestore
+      if (userSnapshot.docs.isNotEmpty) {
+        String storedPIN = userSnapshot.docs.first
+            .get('pin'); // Assuming 'pin' is the field for the PIN in Firestore
 
         if (pin == storedPIN) {
           isAuthenticated = true;
@@ -153,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                     if (isAuthenticated) {
                       UserProvider userProvider =
                           Provider.of<UserProvider>(context, listen: false);
-                          
+
                       userProvider.setUserId(_userIdController.text);
 
                       Navigator.push(
