@@ -13,7 +13,7 @@ class Job extends StatefulWidget {
 }
 
 // Function to show a popup list of available drivers
-void _showDriverList(BuildContext context, String jobId) {
+void _showDriverList(BuildContext context, String jobId, String status) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -49,13 +49,23 @@ void _showDriverList(BuildContext context, String jobId) {
                           onTap: () async {
                             String selectedDriverId =
                                 document.id; // Get selected driver's ID
-                            await FirebaseFirestore.instance
-                                .collection('pickups')
-                                .doc(jobId)
-                                .update({
-                              'driver': selectedDriverId,
-                              'job_status': 'Waiting for driver'
-                            });
+                            if (status == "waiting for return driver") {
+                              await FirebaseFirestore.instance
+                                  .collection('pickups')
+                                  .doc(jobId)
+                                  .update({
+                                'driver': selectedDriverId,
+                                'job_status': 'Leaving for Dealership'
+                              });
+                            } else {
+                              await FirebaseFirestore.instance
+                                  .collection('pickups')
+                                  .doc(jobId)
+                                  .update({
+                                'driver': selectedDriverId,
+                                'job_status': 'Waiting for driver'
+                              });
+                            }
 
                             await FirebaseFirestore.instance
                                 .collection('users')
@@ -130,13 +140,14 @@ class _JobState extends State<Job> {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
                 String jobId = document.id;
+                String status = data["job_status"];
                 // Create your ListTile widgets using 'data' here
                 // Example:
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
                     onTap: () async {
-                      _showDriverList(context, jobId);
+                      _showDriverList(context, jobId, status);
                     },
                     child: Container(
                       height: 150,
