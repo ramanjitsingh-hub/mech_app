@@ -125,6 +125,8 @@ class _PickupState extends State<Pickup> {
                                     fontWeight: FontWeight.w700),
                                 decoration: InputDecoration(
                                   hintText: "Name",
+                                  hintStyle: TextStyle(
+                                      color: Colors.grey.withOpacity(0.5)),
                                   border: InputBorder.none,
                                   focusedBorder: InputBorder.none,
                                   enabledBorder: InputBorder.none,
@@ -167,6 +169,8 @@ class _PickupState extends State<Pickup> {
                                   textAlign: TextAlign.justify,
                                   decoration: InputDecoration(
                                     hintText: "PBXX-XXX",
+                                    hintStyle: TextStyle(
+                                        color: Colors.grey.withOpacity(0.5)),
                                     border: InputBorder.none,
                                     focusedBorder: InputBorder.none,
                                     enabledBorder: InputBorder.none,
@@ -218,6 +222,8 @@ class _PickupState extends State<Pickup> {
                               textAlign: TextAlign.justify,
                               decoration: InputDecoration(
                                 hintText: "+91 XXXXXXXXX",
+                                hintStyle: TextStyle(
+                                    color: Colors.grey.withOpacity(0.5)),
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -264,6 +270,8 @@ class _PickupState extends State<Pickup> {
                               textAlign: TextAlign.justify,
                               decoration: InputDecoration(
                                 hintText: "House No.X,ABC Enclave",
+                                hintStyle: TextStyle(
+                                    color: Colors.grey.withOpacity(0.5)),
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -309,6 +317,8 @@ class _PickupState extends State<Pickup> {
                                       fontWeight: FontWeight.w700),
                                   decoration: InputDecoration(
                                     hintText: "Punjab",
+                                    hintStyle: TextStyle(
+                                        color: Colors.grey.withOpacity(0.5)),
                                     border: InputBorder.none,
                                     focusedBorder: InputBorder.none,
                                     enabledBorder: InputBorder.none,
@@ -349,6 +359,8 @@ class _PickupState extends State<Pickup> {
                                     textAlign: TextAlign.justify,
                                     decoration: InputDecoration(
                                       hintText: "147001",
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey.withOpacity(0.5)),
                                       border: InputBorder.none,
                                       focusedBorder: InputBorder.none,
                                       enabledBorder: InputBorder.none,

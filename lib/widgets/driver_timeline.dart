@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mech_app/pages/Driver/driver.dart';
 import 'package:mech_app/provider/userprovider.dart';
+import 'package:mech_app/widgets/Qrcodepage.dart';
 import 'package:mech_app/widgets/photos.submit.dart';
 import 'package:provider/provider.dart';
 
@@ -39,9 +40,11 @@ class _TimelineWidgetState extends State<TimelineWidget> {
           return Text('No data found');
         } else {
           String? jobStatus = snapshot.data!.get('job_status');
+          String? itr = snapshot.data!.get('itr');
+
           bool isTapped = false;
 
-          if (jobStatus == 'waiting for driver') {
+          if (itr == "C2D") {
             return Column(
               children: [
                 SizedBox(height: 20),
@@ -164,6 +167,7 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                             .collection('pickups')
                             .doc(widget.currentPickupId)
                             .update({
+                          'itr': 'D2C',
                           'job_status': 'Car at Dealership',
                           'driver': 'fetch'
                         });
@@ -287,6 +291,52 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                             .collection('pickups')
                             .doc(widget.currentPickupId)
                             .update({
+                          'job_status': 'Payment Recieved',
+                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => QrcodePage(),
+                          ),
+                        );
+                        refreshData();
+                      }
+                    } catch (e) {
+                      print('Error updating job status: $e');
+                    }
+                  },
+                  child: Container(
+                    height: 50,
+                    width: 250,
+                    child: Center(
+                      child: Text(
+                        "Accept Payment",
+                        style: GoogleFonts.inter(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: jobStatus == 'Leaving for Customer'
+                          ? Colors.redAccent
+                          : Colors.grey,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    try {
+                      if (jobStatus == 'Payment Recieved') {
+                        await FirebaseFirestore.instance
+                            .collection('pickups')
+                            .doc(widget.currentPickupId)
+                            .update({
                           'job_status': 'Car Reached Customer',
                           'status': 'Completed',
                           'driver': 'fetch'
@@ -308,7 +358,7 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                     width: 250,
                     child: Center(
                       child: Text(
-                        "Reached Customer",
+                        "Finish Delivery",
                         style: GoogleFonts.inter(
                           color: Colors.white,
                           fontSize: 16,
@@ -318,7 +368,7 @@ class _TimelineWidgetState extends State<TimelineWidget> {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: jobStatus == 'Leaving for Customer'
+                      color: jobStatus == 'Payment Recieved'
                           ? Colors.redAccent
                           : Colors.grey,
                     ),
